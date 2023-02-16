@@ -20,6 +20,8 @@ public class Variables {
     static int PoolID = 0;
     static int ErroPreImagem = 0; //0 sem erro;
     static int TokenType = 0;
+
+    static String shortS = "normal";
     //static String ScriptADD= "";
 
     //Didactic

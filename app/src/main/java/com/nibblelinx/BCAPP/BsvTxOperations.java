@@ -31,7 +31,7 @@ import java.io.InputStreamReader;
 /////////////////////////////////////////////////////////////////
 
 public class BsvTxOperations {
-
+    Ecc eccVar = new Ecc();
 
     //String urlBaseTXID = "https://api.whatsonchain.com/v1/bsv/main/tx/" + TXID +  "/hex";
     String urlBaseTXID = "";
@@ -3217,6 +3217,24 @@ public class BsvTxOperations {
             BigInteger[] sigECD = new BigInteger[2];
             sigECD[0] = signature[0];
             sigECD[1] = signature[1];
+
+            //////////////////////////////////////////////////////////
+            // Escolhe o S mais curto
+            // Para evitar a maleabilidade e fazer o algo ser um pouco mais rápido
+            // https://www.derpturkey.com/inherent-malleability-of-ecdsa-signatures/
+            //////////////////////////////////////////////////////////
+
+            Variables.shortS = "normal s";
+
+            BigInteger sInv = eccVar.n_order.subtract(sigECD[1]); // sInv = n - s
+
+            if(sInv.compareTo(sigECD[1]) == -1) {
+                sigECD[1] = sInv;
+                Variables.shortS = "inverted s";
+            }
+
+            //////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////
 
             Keygen pubKey = new Keygen();
             //Assinatura no formato DER + FORKID

@@ -146,18 +146,22 @@ public class BcListen extends AppCompatActivity {
             public void onClick(View view) {
                 rolledP1 = r.nextInt(6) + 1;
 
-                rollResult1 = rolledP1;
+                //rollResult1 = rolledP1;
 
                 setDiceImage(rolledP1, iv_dice_p1);
                 iv_dice_p1.startAnimation(animation);
+
+                tv_player1.setText("Jogador 1: " + rolledP1); //Mod
+
+                sendDataToBc("Jogador_1: " + rolledP1 + " Jogador_2: " + rolledP2);
 
                 Jogador1 = true;
 
                 //ver se o outro jogador rolou seus dados
 
                 if (rolledP2 != 0) {
-                    tv_player1.setText("Jogador_1 Roll");
-                    tv_player2.setText("Jogador_2 Roll");
+                    tv_player1.setText("Jogador 1 Roll " + rolledP1);
+                    tv_player2.setText("Jogador 2 Roll " + rolledP2);
 
                     //decidindo o vencedor(calculo)
                     if (rolledP1 > rolledP2) {
@@ -178,8 +182,11 @@ public class BcListen extends AppCompatActivity {
                     }
 
                     //inicializando os valores
+                    /*
                     rolledP1 = 0;
                     rolledP2 = 0;
+
+                     */
 
                     iv_dice_p1.setEnabled(true);
                     iv_dice_p2.setEnabled(true);
@@ -202,18 +209,22 @@ public class BcListen extends AppCompatActivity {
 
                 rolledP2 = r.nextInt(6) + 1;
 
-                rollResult2 = rolledP2;
+                //rollResult2 = rolledP2;
 
                 setDiceImage(rolledP2, iv_dice_p2);
                 iv_dice_p2.startAnimation(animation);
 
-                Jogador1 = false;
+                tv_player2.setText("Jogador_2: " + rolledP2);
+
+
+                sendDataToBc("Jogador_1: " + rolledP1 + " Jogador_2: " + rolledP2);
+                //Jogador1 = false;
 
                 //ver se o outro jogador rolou seus dados
                 if (rolledP1 != 0) {
 
-                    tv_player1.setText("Jogador_1 Roll");
-                    tv_player2.setText("Jogador_2 Roll");
+                    tv_player1.setText("Jogador 1 Roll " + rolledP1);
+                    tv_player2.setText("Jogador 2 Roll " + rolledP2);
 
                     //decidindo o vencedor(calculo)
                     if (rolledP1 > rolledP2) {
@@ -234,8 +245,11 @@ public class BcListen extends AppCompatActivity {
                     }
 
                     //valor inicial
+                    /*
                     rolledP1 = 0;
                     rolledP2 = 0;
+
+                     */
 
                     iv_dice_p1.setEnabled(true);
                     iv_dice_p2.setEnabled(true);
